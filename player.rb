@@ -1,4 +1,3 @@
-require 'pry'
 class Player
   @@player_count = 0
   attr_accessor :name, :score, :lives

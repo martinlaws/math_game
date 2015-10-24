@@ -18,6 +18,7 @@ class Question
     if @player_turn.lives > 0
       prompt_for_answer
     else
+      puts 
       puts "Sorry #{@player_turn.name}, you're shit out of lives."
       puts 
       end_game
@@ -25,6 +26,7 @@ class Question
   end
 
   def prompt_for_answer
+    puts
     puts "Ok #{@player_turn.name}, answer this: What is #{@num1} #{@operator} #{@num2}?"
     @player_answer = gets.chomp.to_i
     verify_answer(@num1, @num2, @operator)
@@ -35,11 +37,14 @@ class Question
     if @player_answer == real_answer
       puts "Correct!"
       @player_turn.score += 1
+      puts "CURRENT SCORE:"
+      puts "#{$player1.name}: #{$player1.score}"
+      puts "#{$player2.name}: #{$player2.score}"
     else
       puts "WRONG!"
       @player_turn.lives -= 1
+      puts "#{@player_turn.name} has #{@player_turn.lives} lives remaining."
     end  
-    puts "#{@player_turn.name}: #{@player_turn.score}"
   end
 
   def self.count

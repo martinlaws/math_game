@@ -1,6 +1,5 @@
 require_relative './question.rb'
 require_relative './player.rb'
-require 'pry'
 
 $lives = true
 puts
