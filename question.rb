@@ -47,10 +47,6 @@ class Question
     end  
   end
 
-  def self.count
-    @@question_count
-  end
-
   def end_game
     puts "Thanks for playing!"
     puts "FINAL SCORE:"
