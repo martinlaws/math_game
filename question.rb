@@ -1,8 +1,7 @@
 class Question
-  @@question_count = 0
+  @@question_count = 1
 
   def initialize
-    @@question_count += 1
     if @@question_count.odd?
       @player_turn = $player1
     else
@@ -15,11 +14,12 @@ class Question
 
     @operator = ['+', '-', '*'].sample
 
-    if @player_turn.lives > 0
+    if ($player1.lives > 0) && ($player2.lives > 0)
+      @@question_count += 1
       prompt_for_answer
     else
       puts 
-      puts "Sorry #{@player_turn.name}, you're shit out of lives."
+      puts "BUMMER! You're all out of lives."
       puts 
       end_game
     end
@@ -53,7 +53,7 @@ class Question
 
   def end_game
     puts "Thanks for playing!"
-    puts "Current scores:"
+    puts "FINAL SCORE:"
     puts "#{$player1.name}: #{$player1.score}"
     puts "#{$player2.name}: #{$player2.score}"
     $lives = false
