@@ -29,8 +29,20 @@ class Question
     puts
     puts "Ok #{@player_turn.name}, answer this: What is #{@num1} #{@operator} #{@num2}?"
     @player_answer = gets.chomp.to_i
-    verify_answer(@num1, @num2, @operator)
+    
+    if !(@player_answer.to_i.is_a? Fixnum)
+      begin
+      raise 'InvalidGuessEntry'
+      rescue RuntimeError
+        puts "Sorry, it doesn't look like you've entered a number! Please try again:"
+        @player_answer = gets.chomp.to_i
+      end
+    else
+      verify_answer(@num1, @num2, @operator)
+    end 
   end
+
+
 
   def verify_answer(num1, num2, operator)
     real_answer = num1.send(operator, num2)
