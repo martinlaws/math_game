@@ -28,20 +28,23 @@ class Question
   def prompt_for_answer
     puts
     puts "Ok #{@player_turn.name}, answer this: What is #{@num1} #{@operator} #{@num2}?"
-    @player_answer = gets.chomp.to_i
+    validate_answer(gets.chomp!)
+  end
     
-    if !(@player_answer.to_i.is_a? Fixnum)
+  def validate_answer(player_answer)
+    @player_answer = player_answer
+    if @player_answer.match(/\d+/)
+      @player_answer = @player_answer.to_i
+      verify_answer(@num1, @num2, @operator)
+    else
       begin
       raise 'InvalidGuessEntry'
       rescue RuntimeError
         puts "Sorry, it doesn't look like you've entered a number! Please try again:"
-        @player_answer = gets.chomp.to_i
+        validate_answer(gets.chomp!)
       end
-    else
-      verify_answer(@num1, @num2, @operator)
     end 
   end
-
 
 
   def verify_answer(num1, num2, operator)
