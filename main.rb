@@ -36,9 +36,9 @@ puts
 puts "Welcome!"
 puts
 puts "Ok player 1, what's your name?"
-name_check1(name_input = gets.chomp!)
+name_check1(name_input = gets.chomp)
 puts "Ok player 2, what's your name?"
-name_check2(name_input = gets.chomp!)
+name_check2(name_input = gets.chomp)
 
 loop do
   if $lives
